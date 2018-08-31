@@ -17,24 +17,29 @@ void drawDefault(int height){
 }
 
 void drawInverse(int height){
-	for(int i = 0; i < height; i++){
+	for(int i = 0; i < height - 2; i++){
 		int ast = height - i - 1;
-		for(int j = 0; j < ast + 1; j++){
+		for(int j = 0; j < ast - 1; j++){
 			printf("*");
 		}
-		int spaces = (i + 1)*2 - 1;
 
+		int spaces = (i + 1)*2 - 1;
 		for(int j = 0; j < spaces; j++){
 			printf(" ");
 		}
 
-                ast = height - i - 1;
-		for(int j = 0; j < ast + 1; j++){
+		ast = height - i - 1;
+		for(int j = 0; j < ast - 1; j++){
 			printf("*");
 		}
-
 		printf("\n");
 	}
+
+	for(int i = 0; i < (height - 2)*2 + 1; i++){
+		printf("*");
+	}
+
+	printf("\n");
 }
 
 void drawSquare(int height){
