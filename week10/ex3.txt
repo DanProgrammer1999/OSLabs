@@ -1,3 +1,14 @@
 -rw-rw-rw- 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt
 -rwxrw-rwx 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt
 -rwxrwxrwx 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt
+
+These numbers denote another mode of permissions: octal. There are also symbolical (rwx) and binary modes.
+If we set file's permissions to 660, we get:
+-rw-rw---- 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt (read and write permission for user and group)
+
+for 775:
+-rwxrwxr-x 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt (all permissions for user and group, 
+read and write permission for others)
+
+for 777:
+-rwxrwxrwx 1 danieldv99 danieldv99 0 Oct 24 13:02 _ex3.txt (all permissions to all groups)
