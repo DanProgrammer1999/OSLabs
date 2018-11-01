@@ -1,0 +1,7 @@
+In the first example, the string is saved in the buffer, and when the program forks, 
+the new process gets THE SAME buffer. And when both processes output the newline character,
+the data from the buffer is written to standard io stream. 
+
+In the second example, the data from the buffer is written right away because of 
+the newline character present in the first printf statement. So when the program forks, the buffer 
+is clear and both parent and child processes output just a new line.
