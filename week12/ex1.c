@@ -11,5 +11,7 @@ int main()
         result[i] = fgetc(rnd);
     }
 
+    printf("%s\n", result);
+
     return 0;
 }
