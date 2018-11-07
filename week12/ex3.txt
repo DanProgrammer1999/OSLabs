@@ -1,0 +1,74 @@
+First I tried to copy a file with some random stuff (literally, just lines of "some random stuff") with 
+total size of 242kB. Here's the output:
+
+real    0m0.005s
+user    0m0.001s
+sys     0m0.004s
+
+For the files twice and thrice the initial size, the output is following:
+
+real    0m0.011s
+user    0m0.001s
+sys     0m0.010s
+
+real    0m0.016s
+user    0m0.000s
+sys     0m0.016s
+
+As we can see, the time linearly depends on the size of file. 
+Let's now use the biggest file (with 726kB of stuff) and see how the change of size of the buffer affects the time.
+
+For the BUF_SIZE = 200, we get:
+
+real    0m0.041s
+user    0m0.000s
+sys     0m0.040s
+
+For the BUF_SIZE = 5000, we get: 
+
+real    0m0.007s
+user    0m0.001s
+sys     0m0.007s
+
+Let's try BUF_SIZE = 50000
+
+real    0m0.006s
+user    0m0.000s
+sys     0m0.007s
+
+As we see, as we increase the buffer, at some point we run into a bottleneck, where further increasing 
+the buffer size yields little or no performance gain. Furthermore, if the buffer is too large, the performance
+begins to decrease. In our case, buffer of 9000000 (9mB) would drastically decrease the performance:
+
+real    0m0.394s
+user    0m0.001s
+sys     0m0.003s
+
+Now let's try using O_SYNC option (it tells the process to wait untill the transfer is finished).
+With the default buffer, the time is:
+
+real    0m2.466s
+user    0m0.012s
+sys     0m0.108s
+
+With the buffer of 5000, we get:
+
+real    0m0.440s
+user    0m0.000s
+sys     0m0.034s
+
+Setting the buffer size to 50000 yields: 
+
+real    0m0.056s
+user    0m0.000s
+sys     0m0.007s
+
+So we see, that in the contrast to not having O_SYNC flag, we need a larger buffer to avoid it being a bottleneck.
+Let's try a very big buffer, as earlier, with the O_SYNC flag, and see if we get a drawback in efficiency 
+because of it:
+
+real    0m0.316s
+user    0m0.002s
+sys     0m0.000s
+
+So yes, the performance decrease is obvious.
